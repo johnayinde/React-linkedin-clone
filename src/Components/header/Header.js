@@ -3,6 +3,10 @@ import "./header.css";
 import linkedinLogo from "../../linkedin-logo.png";
 import SearchIcon from "@material-ui/icons/Search";
 import HeaderOption from "./HeaderOption";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/userSlice";
+import { getAuth } from "firebase/auth";
+
 import {
 	SupervisorAccount,
 	Home,
@@ -12,6 +16,14 @@ import {
 } from "@material-ui/icons";
 
 function Header() {
+	const auth = getAuth();
+	const dispatch = useDispatch();
+
+	const logoutApp = () => {
+		dispatch(logout());
+		auth.signOut();
+	};
+
 	return (
 		<div className="header">
 			<div className="header_left">
@@ -19,7 +31,7 @@ function Header() {
 
 				<div className="header_search">
 					<SearchIcon />
-					<input type="text" />
+					<input type="text" placeholder="Search" />
 				</div>
 			</div>
 
@@ -29,7 +41,7 @@ function Header() {
 				<HeaderOption title="Job" Icon={BusinessCenter} />
 				<HeaderOption title="Messaging" Icon={Chat} />
 				<HeaderOption title="Notifications" Icon={Notifications} />
-				<HeaderOption avatar={linkedinLogo} title="me" />
+				<HeaderOption avatar={true} title="Me" onclick={logoutApp} />
 			</div>
 		</div>
 	);
