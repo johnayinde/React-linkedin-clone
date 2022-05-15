@@ -1,7 +1,6 @@
 .login {
 	display: grid;
-	place-items: center;
-	margin: 0 auto;
+	justify-items: center;
 	padding: 100px 0;
 }
 

@@ -20,25 +20,25 @@ function Login() {
 
 	const auth = getAuth();
 	const register = () => {
-		createUserWithEmailAndPassword(auth, email, password)
-			.then((userAuth) => {
-				const user = userAuth.user;
+		// createUserWithEmailAndPassword(auth, email, password)
+		// 	.then((userAuth) => {
+		// 		const user = userAuth.user;
 
-				updateProfile(user, {
-					displayName: name,
-					photoURL: profilePic,
-				}).then(() => {
-					dispatch(
-						login({
-							email: user.email,
-							uid: user.uid,
-							displayName: name,
-							photoURL: profilePic,
-						})
-					);
-				});
+		// 		updateProfile(user, {
+		// 			displayName: name,
+		// 			photoURL: profilePic,
+		//}).then(() => {
+		dispatch(
+			login({
+				email: email,
+				// uid: uid,
+				displayName: name,
+				photoURL: profilePic,
 			})
-			.catch((e) => alert(e.message));
+		);
+		// 	});
+		// })
+		// .catch((e) => alert(e.message));
 	};
 
 	const loginToApp = (e) => {
